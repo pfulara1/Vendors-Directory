@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="/" />
+    <title>Search engine for local vendors</title>
+    <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script  src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js"></script>
+    <script src="/javascripts/app.js"></script>
+    <script src="/javascripts/ng-map.min.js"></script>
+  </head>
+  <header ng-include="'header.html'"></header>
+  <body class="page-bg" ng-app="app" >
+        <div  class="container-fluid" ng-controller="IndexController" >
+        	<div class="row">
+            <div class="col-lg-8">
+                    <div id="result">
+                     <h5 class="bg-primary" style="font-size:20px; font:sans-serif; text-transform:uppercase">Vendors near you</h2>
+                     <ul id='vendor-list' class="list-group">
+                       <li ng-repeat="vendor in data" class="list-group-item">
+           				        <div class="row">
+                            <div class="col-lg-4">
+ 								            <img width="200" height="200" src="http://somesweetphoto.smugmug.com/photos/i-VHdG3sd/0/O/i-VHdG3sd.jpg">
+                            </div>
+                            <div class="col-lg-6">
+ 						                        <h5 class="highlights">Vendor Name :     {{vendor.name}}</h5>
+ 						                        <h5 class="highlights">Vendor Type :     {{vendor.vendortype}}</small></h5>
+                                    <h5 class="highlights">Vendor Contact :  {{vendor.contactinfo}}</small></h5>
+                                    <p  class="highlights">Vendor Services : {{vendor.description}}</p>
+ 						                 </div>
+ 						                </div>
+                       </li>
+                     </ul>
+                    <p  style="font-size:20px; font:sans-serif; color:orange; text-transform:uppercase">{{error}}<p>
+                   </div>
+              	</div>
+         <div class="col-lg-4">
+          <form ng-app="ngMap" >
+            <h5 class="bg-primary" style="font-size:20px; font:sans-serif;  text-transform:uppercase">Search local vendors near you</h5>
+            <ul class="form-style-1">
+              <li>
+              <label >Vendor Type</label>
+              <select name= "vendortype" ng-required="true" class="field-select" ng-model="formdata._vendortype" >
+              <option value=""></option>
+              <option value="construction">Construction</option>
+              <option value="hardware">Hardware</option>
+              <option value="food-beverages">Food/Beverages</option>
+              <option value="pipes-fittings">Pipes and Fittings</option>
+              <option value="automobile">Automobile</option>
+              <option value="sanitaryware">Sanitaryware</option>
+              </select>
+              </li>
+              <li>
+                <label >Distance</label>
+                <select name="vendordistance" ng-required="true"  class="field-select" ng-model="formdata._vendordistance">
+                  <option value=""></option>
+                  <option value="1">0-1km</option>
+                  <option value="3">1-3km</option>
+                  <option value="10">3-10km</option>
+                  <option value="20">10-20km</option>
+                  <option value="100">20-100km</option>
+                </select>
+              </li>
+             </li>
+             <li ng-required="true">
+               <ng-map center="[{{latitude}}, {{longitude}}]"></ng-map>
+               <input  name="location" style="visibility:hidden;"  ng-model="formdata._location" >
+                <br/>
+                <label >Click for Current Location</label>
+                <button type="button" style="background: url('/images/locate.png'); width: 40px;height: 40px; background-size:cover;" ng-click="getLocation()"></button>
+             </li>
+                <br/>
+                  <button type="submit" type="submit" ng-click="postData()" class="btn btn-info">
+                  <span class="glyphicon glyphicon-search"></span> Search
+                  </button>
+            </ul>
+        </form>
+        </div>
+        </div>
+      </div>
+  </body>
+ </html>

@@ -1,0 +1,23 @@
+{
+  "name": "dukan",
+  "version": "1.0.0",
+  "description": "This app is used for searching local shops closer to your area",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Paritosh Fulara",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.6.4",
+    "body-parser": "^1.5.2",
+    "bootstrap": "^4.0.0-alpha.6",
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
+    "method-override": "~2.1.2",
+    "mongodb": "^2.2.28",
+    "mongoose": "4.2.6",
+    "morgan": "~1.2.2",
+    "request-promise": "^4.2.1"
+  }
+}
