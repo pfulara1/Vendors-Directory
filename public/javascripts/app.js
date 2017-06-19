@@ -1,4 +1,25 @@
-var myapp= angular.module('app',['ngMap']);
+var myapp= angular.module('app',['ngMap','locator']);
+
+myapp.config(['$routeProvider','$locationProvider', function($routeProvider,$locationProvider){
+
+$locationProvider.html5Mode(true);
+
+$routeProvider.when('/',{
+   templateUrl:'views/index.html',
+   controller:'IndexController'
+
+}).
+when('/contact',{
+  templateUrl:'views/contact.html'
+}).
+when('/addshop',{
+  templateUrl:'views/addshop.html',
+  controller:'AddShopController'
+}).otherwise({
+  redirectTo:'/home'
+});
+}]);
+
 
 //scope is genrally a binding part between html view and javascript controller
 myapp.controller('IndexController',['$scope','$http', function($scope,$http){
@@ -33,4 +54,14 @@ $scope.postData = function() {
         });
 };
 
+}]);
+
+myapp.controller('AddShopController',['$scope','$http' ,'location', function($scope,$http,$location){
+    location.get(angular.noop, angular.noop);
+     $scope.isModalVisible = false;
+
+     $scope.toggleModal = function() {
+       $scope.isModalVisible = !$scope.isModalVisible;
+     };
+    $scope.$watch('pickedLocation', $scope.toggleModal);
 }]);
