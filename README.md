@@ -6,5 +6,4 @@ o	The purpose of this application is to enable user to search for different type
 o	This application also allows the vendors to add their services to the application database. 
 
 
-o	Worked on developing both the front-end and backend of this application.
 
